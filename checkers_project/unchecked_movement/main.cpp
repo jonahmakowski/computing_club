@@ -3,6 +3,8 @@
 #define BLANK_REPRESENT '.'
 #define RED 1
 #define BLACK 0
+#define BLACK_KING_ROW 0
+#define RED_KING_ROW 7
 
 struct Piece {
     bool empty = true;
@@ -101,6 +103,13 @@ int calculate_points(int side) {
 
 void move_piece(Position from, Position to) {
     board[to.x][to.y] = board[from.x][from.y];
+
+    if (to.y == BLACK_KING_ROW && board[to.x][to.y].side == BLACK) {
+        board[to.x][to.y] = new_black_king();
+    } else if (to.y == RED_KING_ROW && board[to.x][to.y].side == RED) {
+        board[to.x][to.y] = new_red_king();
+    }
+
     board[from.x][from.y] = new_blank_piece();
 }
 
