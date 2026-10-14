@@ -7,11 +7,8 @@
 #define RED_KING_ROW 7
 
 struct Piece {
-    bool empty = true;
     char represent = BLANK_REPRESENT; // The character printed out when displaying the board
-    int value;
     int side;
-    bool backwards = false; // Represents if the piece can move backwards
 };
 
 struct Position {
@@ -23,47 +20,35 @@ Piece board[8][8];
 
 Piece new_black_piece() {
     Piece n;
-    n.empty = false;
     n.represent = '1';
-    n.value = 1;
     n.side = BLACK;
     return n;
 }
 
 Piece new_red_piece() {
     Piece n;
-    n.empty = false;
     n.represent = '2';
-    n.value = 1;
     n.side = RED;
     return n;
 }
 
 Piece new_black_king() {
     Piece n;
-    n.empty = false;
     n.represent = '3';
-    n.value = 2;
     n.side = BLACK;
-    n.backwards = true;
     return n;
 }
 
 Piece new_red_king() {
     Piece n;
-    n.empty = false;
     n.represent = '4';
-    n.value = 2;
     n.side = RED;
-    n.backwards = true;
     return n;
 }
 
 Piece new_blank_piece() {
     Piece n;
-    n.empty = true;
     n.represent = BLANK_REPRESENT;
-    n.value = 0;
     return n;
 }
 
