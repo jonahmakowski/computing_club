@@ -11,11 +11,6 @@ struct Piece {
     int side;
 };
 
-struct Position {
-    int x;
-    int y;
-};
-
 Piece board[8][8];
 
 Piece new_black_piece() {
@@ -72,16 +67,16 @@ void generate_board() {
     }
 }
 
-void move_piece(Position from, Position to) {
-    board[to.x][to.y] = board[from.x][from.y];
+void move_piece(int from_x, int from_y, int to_x, int to_y) {
+    board[to_x][to_y] = board[from_x][from_y];
 
-    if (to.y == BLACK_KING_ROW && board[to.x][to.y].side == BLACK) {
-        board[to.x][to.y] = new_black_king();
-    } else if (to.y == RED_KING_ROW && board[to.x][to.y].side == RED) {
-        board[to.x][to.y] = new_red_king();
+    if (to_y == BLACK_KING_ROW && board[to_x][to_y].side == BLACK) {
+        board[to_x][to_y] = new_black_king();
+    } else if (to_y == RED_KING_ROW && board[to_x][to_y].side == RED) {
+        board[to_x][to_y] = new_red_king();
     }
 
-    board[from.x][from.y] = new_blank_piece();
+    board[from_x][from_y] = new_blank_piece();
 }
 
 void display_board() {
@@ -103,9 +98,8 @@ int main() {
     while (true) {
         display_board();
         printf("Move a piece by entering coordinates in the following pattern: x_from y_from x_to y_to: ");
-        Position from;
-        Position to;
-        scanf("%d %d %d %d", &from.x, &from.y, &to.x, &to.y);
-        move_piece(from, to);
+        int from_x, from_y, to_x, to_y;
+        scanf("%d %d %d %d", &from_x, &from_y, &to_x, &to_y);
+        move_piece(from_x, from_y, to_x, to_y);
     }
 }
