@@ -87,20 +87,6 @@ void generate_board() {
     }
 }
 
-int calculate_points(int side) {
-    int points = 0;
-
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
-            if (board[i][j].side == side) {
-                points += board[i][j].value;
-            }
-        }
-    }
-    
-    return points;
-}
-
 void move_piece(Position from, Position to) {
     board[to.x][to.y] = board[from.x][from.y];
 
@@ -125,8 +111,6 @@ void display_board() {
     }
 
     printf("  0 1 2 3 4 5 6 7\n\n");
-
-    printf("Red has %d points, Black has %d points\n", calculate_points(1), calculate_points(0));
 }
 
 int main() {
